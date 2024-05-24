@@ -11,6 +11,7 @@ public class Mission01 {
 		System.out.println("이름: " + name);
 		System.out.println("나이: " + age);
 		System.out.println("주소: " + addr);
+		
 	}
 
 }

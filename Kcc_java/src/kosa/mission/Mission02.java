@@ -18,6 +18,26 @@ public class Mission02 {
 		double avg = (double) sum / SUB_CNT;
 
 		System.out.println("총점: " + sum + " 평균: " + avg);
+
+		// 학점 90이상 -> A학점
+		// 80이상 -> B학점
+		// 70이상 -> C학점
+		// 60이상 -> D학점
+		// 50이상 -> F학점
+		char grade;
+		if (avg >= 90) {
+			grade = 'A';
+		} else if (avg >= 80) {
+			grade = 'B';
+		} else if (avg >= 70) {
+			grade = 'C';
+		} else if (avg >= 60) {
+			grade = 'D';
+		} else {
+			grade = 'F';
+		}
+		
+		System.out.println("학점: " + grade);
 	}
 
 }
