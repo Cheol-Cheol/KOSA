@@ -1,0 +1,32 @@
+package kosa.mission;
+
+import java.util.Scanner;
+
+public class Galaga {
+
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int T = Integer.parseInt(sc.nextLine());
+		int num = 0;
+
+		while (T-- > 0) {
+			int A = Integer.parseInt(sc.next());
+			int B = Integer.parseInt(sc.next());
+			int cnt = 0;
+			num++;
+
+			while (true) {
+				cnt++;
+
+				A *= 2;
+				B *= 3;
+
+				if (A <= B) {
+					System.out.println("#" + num + " " + cnt);
+					break;
+				}
+			}
+		}
+	}
+
+}
