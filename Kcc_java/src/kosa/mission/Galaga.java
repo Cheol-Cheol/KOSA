@@ -9,11 +9,10 @@ public class Galaga {
 		int T = Integer.parseInt(sc.nextLine());
 		int num = 0;
 
-		while (T-- > 0) {
+		for (int i = 1; i <= T; i++) {
 			int A = Integer.parseInt(sc.next());
 			int B = Integer.parseInt(sc.next());
 			int cnt = 0;
-			num++;
 
 			while (true) {
 				cnt++;
@@ -22,7 +21,7 @@ public class Galaga {
 				B *= 3;
 
 				if (A <= B) {
-					System.out.println("#" + num + " " + cnt);
+					System.out.println("#" + i + " " + cnt);
 					break;
 				}
 			}
