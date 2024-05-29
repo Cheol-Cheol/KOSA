@@ -1,4 +1,4 @@
-package kosa.subject.oop;
+package kosa.subject.oop.phoneInfo;
 
 public class PhoneInfo {
 	private String name;

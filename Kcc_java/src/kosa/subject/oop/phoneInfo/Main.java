@@ -1,4 +1,4 @@
-package kosa.subject.oop;
+package kosa.subject.oop.phoneInfo;
 
 import java.util.Scanner;
 
@@ -41,6 +41,8 @@ public class Main {
 				break;
 			case 4:
 				break flag;
+			default:
+				System.out.println("다시 입력해주세요.");
 			}
 		}
 	}
