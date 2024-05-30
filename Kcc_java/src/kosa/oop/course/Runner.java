@@ -1,4 +1,4 @@
-package kosa.relation;
+package kosa.oop.course;
 
 public class Runner {
 

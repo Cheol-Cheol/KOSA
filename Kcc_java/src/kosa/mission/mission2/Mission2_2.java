@@ -1,4 +1,4 @@
-package kosa.mission2;
+package kosa.mission.mission2;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package kosa.relation;
+package kosa.oop.course;
 
 import java.util.ArrayList;
 import java.util.List;

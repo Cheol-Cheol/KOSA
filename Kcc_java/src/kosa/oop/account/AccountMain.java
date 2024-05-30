@@ -1,4 +1,4 @@
-package kosa.oop;
+package kosa.oop.account;
 
 public class AccountMain {
 

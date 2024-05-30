@@ -1,4 +1,4 @@
-package kosa.oop;
+package kosa.oop.book;
 
 public class BookMain {
 

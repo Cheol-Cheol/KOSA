@@ -1,4 +1,4 @@
-package kosa.subject.baseball;
+package kosa.subject.oop.baseball;
 
 import java.util.Scanner;
 

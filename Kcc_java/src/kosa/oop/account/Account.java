@@ -1,4 +1,4 @@
-package kosa.oop;
+package kosa.oop.account;
 
 public class Account {
 	// 계좌객체 생성 하기위해

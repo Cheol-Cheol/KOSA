@@ -1,4 +1,4 @@
-package kosa.oop;
+package kosa.oop.member;
 
 public class Member {
 	// 회원정보에 대한 클래스와 객체를 생성 후 출력해보기

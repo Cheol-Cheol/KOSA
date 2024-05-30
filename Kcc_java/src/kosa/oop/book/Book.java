@@ -1,4 +1,4 @@
-package kosa.oop;
+package kosa.oop.book;
 
 public class Book {
 	// 상태: 책이름, 정가, 할인된 가격

@@ -1,4 +1,4 @@
-package kosa.subject.store;
+package kosa.subject.oop.store;
 
 import java.util.ArrayList;
 import java.util.List;

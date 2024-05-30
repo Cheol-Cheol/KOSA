@@ -1,4 +1,4 @@
-package kosa.oop;
+package kosa.oop.member;
 
 public class MemberMain {
 

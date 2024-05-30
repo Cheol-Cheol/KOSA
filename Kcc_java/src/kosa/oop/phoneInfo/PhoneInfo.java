@@ -1,4 +1,4 @@
-package kosa.phone;
+package kosa.oop.phoneInfo;
 
 public class PhoneInfo {
 

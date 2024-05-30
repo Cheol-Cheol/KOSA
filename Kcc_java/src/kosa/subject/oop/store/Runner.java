@@ -1,4 +1,4 @@
-package kosa.subject.store;
+package kosa.subject.oop.store;
 
 public class Runner {
 
