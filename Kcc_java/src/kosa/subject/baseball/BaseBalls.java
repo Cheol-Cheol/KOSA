@@ -56,7 +56,7 @@ public class BaseBalls {
 	}
 
 	// 유효성 검사
-	public boolean checkAnswer(int iptNum) {
+	public String checkAnswer(int iptNum) {
 		createTestArr(iptNum);
 
 		// 숫자 비교
@@ -67,26 +67,22 @@ public class BaseBalls {
 			int tmp = testArr[i];
 
 			// 스트라이크 검사
-			for (int j = 0; j < 3; j++) {
+			xx: for (int j = 0; j < 3; j++) {
 				if (tmp == randomArr[j]) {
 					if (i == j) {
 						strike++;
+						continue xx;
 					}
 
 					if (i != j) {
 						ball++;
+						continue xx;
 					}
 				}
 			}
 		}
 
-		if (strike == 3) {
-			System.out.println("3Strike");
-			return true;
-		} else {
-			System.out.println(strike + "S" + ball + "B");
-			return false;
-		}
+		return strike == 3 ? "3Strike" : String.format("%dS%dB", strike, ball);
 	}
 
 	// 정답 출력
