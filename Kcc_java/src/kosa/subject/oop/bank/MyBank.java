@@ -1,4 +1,4 @@
-package kosa.bank;
+package kosa.subject.oop.bank;
 
 public class MyBank {
 
