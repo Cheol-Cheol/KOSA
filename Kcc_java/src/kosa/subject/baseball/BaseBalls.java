@@ -62,7 +62,7 @@ public class BaseBalls {
 		// 숫자 비교
 		int strike = 0;
 		int ball = 0;
-		
+
 		for (int i = 0; i < 3; i++) {
 			int tmp = testArr[i];
 
@@ -72,20 +72,14 @@ public class BaseBalls {
 					if (i == j) {
 						strike++;
 					}
-				}
-			}
-			
-			// 볼 검사
-			for (int j = 0; j < 3; j++) {
-				if (tmp == randomArr[j]) {
+
 					if (i != j) {
 						ball++;
 					}
 				}
 			}
-			
 		}
-		
+
 		if (strike == 3) {
 			System.out.println("3Strike");
 			return true;
