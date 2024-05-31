@@ -16,19 +16,20 @@ public class GeneralMember {
 		this.address = address;
 	}
 
-	// ´ë¿©ÇÏ±â
 	public void rentVideo(Video video) {
 		rentedVideo = video;
 	}
 
-	// Ãâ·ÂÇÏ±â(È¸¿ø + ºñµğ¿À)
+	public String getName() {
+		return name;
+	}
+
 	public void printInfo() {
-		System.out.println("È¸¿øÀÇ ¾ÆÀÌµğ: " + this.memberId);
-		System.out.println("È¸¿øÀÇ ÀÌ¸§: " + this.name);
-		System.out.println("È¸¿øÀÇ ÁÖ¼Ò: " + this.address);
-		System.out.println("È¸¿øÀÌ ´ë¿©ÇÑ ºñµğ¿À ¹øÈ£: " + rentedVideo.getVideoNo());
-		System.out.println("È¸¿øÀÌ ´ë¿©ÇÑ ºñµğ¿À Á¦¸ñ: " + rentedVideo.getTitle());
-		System.out.println("È¸¿øÀÌ ´ë¿©ÇÑ ºñµğ¿À ¹è¿ì: " + rentedVideo.getActor());
-		System.out.println("------------------------------------------------------------");
+		System.out.println("íšŒì›ì˜ ì•„ì´ë””: " + this.memberId);
+		System.out.println("íšŒì›ì˜ ì´ë¦„: " + this.name);
+		System.out.println("íšŒì›ì˜ ì£¼ì†Œ: " + this.address);
+		System.out.println("íšŒì›ì´ ëŒ€ì—¬í•œ ë¹„ë””ì˜¤ ë²ˆí˜¸: " + rentedVideo.getVideoNo());
+		System.out.println("íšŒì›ì´ ëŒ€ì—¬í•œ ë¹„ë””ì˜¤ ì œëª©: " + rentedVideo.getTitle());
+		System.out.println("íšŒì›ì´ ëŒ€ì—¬í•œ ë¹„ë””ì˜¤ ë°°ìš°: " + rentedVideo.getActor());
 	}
 }

@@ -1,41 +1,100 @@
 package kosa.subject.oop.phoneInfo;
 
+import java.util.Scanner;
+
+import kosa.oop.phoneInfo.DataInput;
+
 public class Manager {
 
 	private final PhoneInfo[] phoneInfos;
 	private int cnt;
+	private Scanner sc;
 
 	public Manager() {
 		this.phoneInfos = new PhoneInfo[10];
-		this.cnt = 0;
+		sc = DataInput.getInstance();
 	}
 
-	// Ãß°¡
-	public void addPhoneInfo(String name, String tel, String birth) {
-		phoneInfos[cnt++] = new PhoneInfo(name, tel, birth);
-		System.out.println(">ÀüÈ­¹øÈ£°¡ µî·Ï µÇ¾ú½À´Ï´Ù. ÇöÀç µî·Ï °³¼ö: " + cnt + "°³");
+	// ì¶”ê°€
+	public void addPhoneInfo() {
+		System.out.print("> ì´ë¦„: ");
+		String name = sc.next();
+		System.out.print("> ì „í™”ë²ˆí˜¸: ");
+		String tel = sc.next();
+		System.out.print("> ìƒë…„ì›”ì¼: ");
+		String birth = sc.next();
+
+		System.out.println("1.ì¼ë°˜ 2.íšŒì‚¬ 3.ë™ì°½");
+		System.out.print("> ");
+		int type = Integer.parseInt(sc.next());
+
+		switch (type) {
+		case 1:
+			phoneInfos[cnt++] = new PhoneInfo(name, tel, birth);
+			break;
+		case 2:
+			System.out.print("> ë¶€ì„œ: ");
+			String dept = sc.next();
+			System.out.print("> ì§ì±…: ");
+			String position = sc.next();
+
+			phoneInfos[cnt++] = new Company(name, tel, birth, dept, position);
+			break;
+		case 3:
+			System.out.print("> ì „ê³µ: ");
+			String major = sc.next();
+			System.out.print("> í•™ë²ˆ: ");
+			String year = sc.next();
+
+			phoneInfos[cnt++] = new Universe(name, tel, birth, major, year);
+			break;
+		}
+
+		System.out.println("ì¶”ê°€ì™„ë£Œ");
 	}
 
-	// Ãâ·Â
+	// ì „ì²´ ëª©ë¡ ì¶œë ¥
 	public void listPhoneInfo() {
 		if (cnt == 0) {
-			System.out.println(">µî·ÏµÈ ÀüÈ­¹øÈ­°¡ ¾ø½À´Ï´Ù.");
-		}
+			System.out.println("> ëª©ë¡ì´ ë¹„ì—ˆìŠµë‹ˆë‹¤.");
+		} else {
 
-		for (PhoneInfo phoneInfo : phoneInfos) {
-			if (phoneInfo != null) {
-				phoneInfo.printPhoneInfo();
+			System.out.println("1.ì „ì²´ 2.íšŒì‚¬ 3.ë™ì°½");
+			System.out.print("> ");
+			int type = Integer.parseInt(sc.next());
+
+			switch (type) {
+			case 1:
+				for (int i = 0; i < cnt; i++) {
+					phoneInfos[i].printInfo();
+				}
+				break;
+			case 2:
+				for (int i = 0; i < cnt; i++) {
+					if (phoneInfos[i] instanceof Company) {
+						phoneInfos[i].printInfo();
+					}
+				}
+				break;
+			case 3:
+				for (int i = 0; i < cnt; i++) {
+					if (phoneInfos[i] instanceof Universe) {
+						phoneInfos[i].printInfo();
+					}
+				}
+				break;
 			}
+
 		}
 	}
 
-	// °Ë»ö
+	// ê²€ìƒ‰
 	public PhoneInfo searchPhoneInfo(String name) throws NullPointerException {
 		PhoneInfo target = null;
 
 		for (PhoneInfo phoneInfo : phoneInfos) {
 			if (phoneInfo == null) {
-				throw new NullPointerException("ÀüÈ­¹øÈ£¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.");
+				throw new NullPointerException("ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 			}
 			if (phoneInfo.getName().equals(name)) {
 				target = phoneInfo;

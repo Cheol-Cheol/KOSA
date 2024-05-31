@@ -2,47 +2,44 @@ package kosa.subject.oop.phoneInfo;
 
 import java.util.Scanner;
 
+import kosa.oop.phoneInfo.DataInput;
+
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
 		Manager manager = new Manager();
+		Scanner sc = DataInput.getInstance();
 
 		flag: while (true) {
-			System.out.println(">1.Ãß°¡ 2.ÀüÃ¼Ãâ·Â 3.°Ë»ö 4.Á¾·á");
-			System.out.print(">¸Þ´º: ");
-			int cmd = Integer.parseInt(sc.nextLine());
+			System.out.println(">1.ì¶”ê°€ 2.ì „ì²´ì¶œë ¥ 3.ê²€ìƒ‰ 4.ìˆ˜ì • 5.ì‚­ì œ 6.ì¢…ë£Œ");
+			System.out.print(">ë©”ë‰´: ");
+			int cmd = Integer.parseInt(sc.next());
 
 			switch (cmd) {
 			case 1:
-				System.out.print(">ÀÌ¸§: ");
-				String name = sc.nextLine();
-				System.out.print(">ÀüÈ­¹øÈ£: ");
-				String tel = sc.nextLine();
-				System.out.print(">»ý³â¿ùÀÏ: ");
-				String birth = sc.nextLine();
-
-				manager.addPhoneInfo(name, tel, birth);
+				manager.addPhoneInfo();
 				break;
 			case 2:
 				manager.listPhoneInfo();
 				break;
+			// ë‚˜ì¤‘ì—
 			case 3:
-				System.out.print(">°Ë»ö ÀÌ¸§: ");
+				System.out.print(">ï¿½Ë»ï¿½ ï¿½Ì¸ï¿½: ");
 				String iptName = sc.nextLine();
 
 				try {
 					PhoneInfo searchedPhoneInfo = manager.searchPhoneInfo(iptName);
-					searchedPhoneInfo.printPhoneInfo();
+					searchedPhoneInfo.printInfo();
 				} catch (NullPointerException e) {
-					System.out.println("ÀüÈ­¹øÈ£¸¦ Ã£Áö ¸øÇß½À´Ï´Ù.");
+					System.out.println("ï¿½ï¿½È­ï¿½ï¿½È£ï¿½ï¿½ Ã£ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½.");
 				}
 
 				break;
 			case 4:
+				System.out.println("ì„œë¹„ìŠ¤ ì¢…ë£Œ");
 				break flag;
 			default:
-				System.out.println("´Ù½Ã ÀÔ·ÂÇØÁÖ¼¼¿ä.");
+				System.out.println("1~5ë²ˆ ì¤‘ í•˜ë‚˜ë¥¼ ìž…ë ¥í•´ì£¼ì„¸ìš”.");
 			}
 		}
 	}

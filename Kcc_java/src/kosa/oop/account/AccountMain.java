@@ -3,11 +3,11 @@ package kosa.oop.account;
 public class AccountMain {
 
 	public static void main(String[] args) {
-		Account account = new Account(); // ÂüÁ¶Çü(Å¬·¡½º Å¸ÀÔ), °´Ã¼ »ı¼º(¸Ş¸ğ¸® ÇÒ´ç)
+		Account account = new Account();
 
-		account.accountNo = "111-111";
-		account.owner = "È«±æµ¿";
-		account.balance = 10000;
+//		account.accountNo = "111-111";
+//		account.owner = "í™ê¸¸ë™";
+//		account.balance = 10000;
 
 		account.deposit(5000);
 		try {
@@ -16,9 +16,9 @@ public class AccountMain {
 			e.printStackTrace();
 		}
 
-		System.out.println("°èÁÂ¹øÈ£: " + account.accountNo);
-		System.out.println("°èÁÂÁÖ: " + account.owner);
-		System.out.println("ÀÜ¾×: " + account.balance);
+//		System.out.println("ê³„ì¢Œë²ˆí˜¸: " + account.accountNo);
+//		System.out.println("ì˜ˆê¸ˆì£¼: " + account.owner);
+//		System.out.println("ì”ì•¡: " + account.balance);
 	}
 
 }

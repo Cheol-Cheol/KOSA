@@ -1,28 +1,61 @@
 package kosa.oop.account;
 
 public class Account {
-	// °èÁÂ°´Ã¼ »ý¼º ÇÏ±âÀ§ÇØ
-	// °´Ã¼·ÎºÎÅÍ °øÅëµÈ µ¥ÀÌÅÍ ±¸Á¶¿Í ±â´ÉÀ» ÃßÃâ
-	// »óÅÂ(µ¥ÀÌÅÍ) : °èÁÂ¹øÈ£, °èÁÂÁÖ, ÀÜ¾× => ¸â¹ö º¯¼ö
-	// Çàµ¿(±â´É) : ÀÔ±ÝÇÏ´Ù, Ãâ±ÝÇÏ´Ù => ¸â¹ö ¸Þ¼­µå
+	// ê³„ì¢Œê°ì²´ ìƒì„±í•˜ê¸° ìœ„í•´
+	// ë§Œë“¤ê³ ìž í•˜ëŠ” ê°ì²´ë¡œë¶€í„° ê³µí†µëœ ë°ì´í„° êµ¬ì¡°ì™€ ê¸°ëŠ¥ì„ ì¶”ì¶œ
+	// ìƒíƒœ(ë°ì´í„°) : ê³„ì¢Œë²ˆí˜¸, ì˜ˆê¸ˆì£¼, ìž”ì•¡ => ë©¤ë²„ë³€ìˆ˜
+	// í–‰ë™(ê¸°ëŠ¥) : ìž…ê¸ˆí•˜ê¸°, ì¶œê¸ˆí•˜ê¸° => ë©¤ë²„ë©”ì„œë“œ
 
-	String accountNo; // °èÁÂ¹øÈ£
-	String owner; // °èÁÂÁÖ
-	int balance; // ÀÜ¾×
+	private String accountNo; // ê³„ì¢Œë²ˆí˜¸
+	private String owner; // ì˜ˆê¸ˆì£¼
+	private int balance; // ìž”ì•¡
 
-	// ÀÔ±ÝÇÏ´Ù.
+	public Account() {
+	}
+	
+	public Account(String accountNo, String owner, int balance) {
+		this.accountNo = accountNo;
+		this.owner = owner;
+		this.balance = balance;
+	}
+
+	// ìž…ê¸ˆí•˜ê¸°x
 	public void deposit(int amount) {
 		balance += amount;
 	}
-	
-	// Ãâ±ÝÇÏ´Ù.
+
+	// ì¶œê¸ˆí•˜ê¸°
 	public int withdraw(int amount) throws Exception {
 		if (balance < amount) {
-			throw new Exception("ÀÜ¾× ºÎÁ·");
+			throw new Exception("ì¶œê¸ˆë¶ˆê°€");
 		}
 		balance -= amount;
 
 		return amount;
+	}
+
+	public String getAccountNo() {
+		return accountNo;
+	}
+
+	public String getOwner() {
+		return owner;
+	}
+
+	public int getBalance() {
+		return balance;
+	}
+
+	public void setAccountNo(String accountNo) {
+		this.accountNo = accountNo;
+	}
+
+	public void setOwner(String owner) {
+		this.owner = owner;
+	}
+
+	public void setBalance(int balance) {
+		this.balance = balance;
 	}
 
 }

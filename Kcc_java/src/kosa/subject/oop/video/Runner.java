@@ -3,16 +3,31 @@ package kosa.subject.oop.video;
 public class Runner {
 
 	public static void main(String[] args) {
-		Video v1 = new Video("Æ®·£½ºÆ÷¸Ó3", "¼­ºÀ¼ö");
-		Video v2 = new Video("ÄôÇªÆÒ´õ2", "Áö¼º¹Î");
+		Video v1 = new Video("ë²”ì£„ë„ì‹œ3", "í™©ì² ì›");
+		Video v2 = new Video("ì¿µí‘¸íŒ¬ë”2", "ìœ ì¬ì›");
 
-		GeneralMember m1 = new GeneralMember("cheolcheol", "È²Ã¶¿ø", "ÀÎÃµ");
-		GeneralMember m2 = new GeneralMember("helloWorld", "À¯Àç¿ø", "ºÎÃµ");
+//		SpecialMember m1 = new SpecialMember("cheolcheol", "ì² ì›", "ì¸ì²œ");
+//		GeneralMember m2 = new GeneralMember("helloWorld", "ì¬ì›", "ë¶€ì²œ");
+//
+//		m1.rentVideo(v1); // ë‹¨ê³¨
+//		m2.rentVideo(v2);
+//
+//		m1.printInfo(); // ë‹¨ê³¨
+//		m2.printInfo();
+
+		SpecialMember m1 = new SpecialMember("cheolcheol", "ì² ì›", "ì¸ì²œ");
+		GeneralMember m2 = new GeneralMember("helloWorld", "ì¬ì›", "ë¶€ì²œ");
+
+		GeneralMember arr[] = new GeneralMember[] { m1, m2 };
+
 		m1.rentVideo(v1);
 		m2.rentVideo(v2);
 
-		m1.printInfo();
-		m2.printInfo();
+		for (GeneralMember member : arr) {
+			if (member instanceof SpecialMember) {
+				((SpecialMember) member).specialPrint();
+			}
+		}
 	}
 
 }

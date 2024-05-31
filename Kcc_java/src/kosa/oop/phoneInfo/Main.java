@@ -5,12 +5,11 @@ import java.util.Scanner;
 public class Main {
 
 	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
+		// Scanner sc = new Scanner(System.in);
+		Scanner sc = DataInput.getInstance(); // ì‹±ê¸€í†¤
 		Manager manager = new Manager();
 
 		while (true) {
-			System.out.println("1.Ãß°¡ 2.ÀüÃ¼Ãâ·Â 3.Á¾·á");
-			System.out.print("¸Þ´ºÀÔ·Â: ");
 			String menu = sc.nextLine();
 
 			switch (menu) {
@@ -21,7 +20,6 @@ public class Main {
 				manager.listPhoneInfo();
 				break;
 			case "3":
-				System.out.println("ÇÁ·Î±×·¥ Á¾·á");
 				return;
 			}
 		}
