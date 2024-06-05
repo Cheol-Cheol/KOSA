@@ -10,7 +10,9 @@ public class Main {
 		Manager manager = new Manager();
 
 		while (true) {
-			String menu = sc.nextLine();
+			System.out.println("1. 추가 2. 전체 출력 3. 종료");
+			System.out.print(">");
+			String menu = sc.next();
 
 			switch (menu) {
 			case "1":

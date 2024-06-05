@@ -40,9 +40,9 @@ public class PhoneInfo {
 	}
 
 	public void show() {
-		System.out.println("ÀÌ¸§: " + name);
-		System.out.println("ÀüÈ­¹øÈ£: " + phoneNo);
-		System.out.println("»ı³â¿ùÀÏ: " + birth);
+		System.out.println("ì´ë¦„: " + name);
+		System.out.println("ì „í™”ë²ˆí˜¸: " + phoneNo);
+		System.out.println("ìƒë…„ì›”ì¼: " + birth);
 	}
-	
+
 }
