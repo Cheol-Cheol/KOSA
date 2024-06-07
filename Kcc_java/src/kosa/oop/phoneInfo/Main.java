@@ -10,7 +10,7 @@ public class Main {
 		Manager manager = new Manager();
 
 		while (true) {
-			System.out.println("1. 추가 2. 전체 출력 3. 종료");
+			System.out.println("1. 추가 | 2. 전체 출력 | 3. 정렬 | 4. 종료");
 			System.out.print(">");
 			String menu = sc.next();
 
@@ -22,6 +22,9 @@ public class Main {
 				manager.listPhoneInfo();
 				break;
 			case "3":
+				manager.sortPhoneInfo();
+				break;
+			case "4":
 				return;
 			}
 		}
