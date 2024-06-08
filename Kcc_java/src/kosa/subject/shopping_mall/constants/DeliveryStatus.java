@@ -2,7 +2,7 @@ package kosa.subject.shopping_mall.constants;
 
 public enum DeliveryStatus {
 
-	WAITING("배송중"), DONE("배송완료");
+	SHIPPING("배송중"), DELIVERED("배송완료");
 
 	private String status;
 

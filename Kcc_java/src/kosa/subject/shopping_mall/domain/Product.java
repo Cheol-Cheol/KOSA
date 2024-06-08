@@ -65,11 +65,12 @@ public class Product {
 	}
 
 	public String printProductInfo() {
-		return String.format("[%d]\t%s\t\t%d원\t%d개\t\t%s\t", productId, name, price, stock, category.getValue());
+		return String.format("[%d]   %-13s    %-13d  %-13d  %s", productId, name, price, stock,
+			category.getValue());
 	}
 
 	public String printProductFromCart() {
-		return String.format("[%d]\t%s\t\t%d원", productId, name, price);
+		return String.format("[%d]   %-13s%-13d", productId, name, price);
 	}
-	
+
 }

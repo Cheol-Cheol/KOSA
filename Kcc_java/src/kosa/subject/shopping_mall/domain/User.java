@@ -36,11 +36,10 @@ public class User {
 
 	public void addCartItem(Product product) {
 		cart.add(product);
-		System.out.println("장바구니에 추가 완료");
 	}
 
 	public String printUserInfo() {
-		return String.format("[%d]\t%s\t\t%s\t\t%d\t%s\t%s", userId, name, nickname, age, addr, createdAt);
+		return String.format("[%d]   %s    %-15s %d    %-15s %s", userId, name, nickname, age, addr, createdAt);
 	}
 
 	private static String createDateTimeFormat() {
