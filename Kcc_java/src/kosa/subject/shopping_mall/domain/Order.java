@@ -42,8 +42,8 @@ public class Order {
 	}
 
 	public String printOrderInfo() {
-		return String.format("[%d]    %-5s    %-5s    %-5s", orderId, deliveryStatus.getStatus(),
-			fromUser.getName(), createdAt);
+		return String.format("[%d]    %-5s          %-5s    	%-5s", orderId, deliveryStatus.getStatus(), fromUser.getName(),
+				createdAt);
 	}
 
 	private static String createDateTimeFormat() {

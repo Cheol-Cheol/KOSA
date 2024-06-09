@@ -1,3 +1,4 @@
+
 package kosa.subject.shopping_mall.constants;
 
 public enum Category {

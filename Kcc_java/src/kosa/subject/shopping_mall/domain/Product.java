@@ -24,6 +24,14 @@ public class Product {
 		this.category = category;
 	}
 
+	public String printProductInfo() {
+		return String.format("[%d]   %-13s    %-13d  %-2d  		  %s", productId, name, price, stock, category.getValue());
+	}
+
+	public String printProductFromCart() {
+		return String.format("[%d]   %-13s				%-13d", productId, name, price);
+	}
+
 	public int getProductId() {
 		return productId;
 	}
@@ -62,15 +70,6 @@ public class Product {
 
 	public void setCategory(Category category) {
 		this.category = category;
-	}
-
-	public String printProductInfo() {
-		return String.format("[%d]   %-13s    %-13d  %-13d  %s", productId, name, price, stock,
-			category.getValue());
-	}
-
-	public String printProductFromCart() {
-		return String.format("[%d]   %-13s%-13d", productId, name, price);
 	}
 
 }

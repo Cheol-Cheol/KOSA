@@ -39,7 +39,7 @@ public class User {
 	}
 
 	public String printUserInfo() {
-		return String.format("[%d]   %s    %-15s %d    %-15s %s", userId, name, nickname, age, addr, createdAt);
+		return String.format("[%d]   %s    %-15s   %-2d        %-15s %s", userId, name, nickname, age, addr, createdAt);
 	}
 
 	private static String createDateTimeFormat() {

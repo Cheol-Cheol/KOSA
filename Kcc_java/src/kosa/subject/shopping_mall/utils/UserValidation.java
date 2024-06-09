@@ -1,6 +1,5 @@
 package kosa.subject.shopping_mall.utils;
 
-// User의 유효성 검사를 위한 클래스
 public class UserValidation {
 
 	public static boolean isValidName(String name) throws IllegalArgumentException {
