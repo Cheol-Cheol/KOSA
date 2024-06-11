@@ -1,19 +1,25 @@
 package kosa.oop.phoneInfo;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
 public class Manager {
-	// private PhoneInfo[] arr;
 	private List<PhoneInfo> list;
-	// private Scanner sc;
 	private int count;
+
+	private static final String FILE_NAME = "phoneInfoDB.txt";
+
+	private ObjectOutputStream oos;
+	private ObjectInputStream ois;
 
 	public Manager() {
 		list = new LinkedList();
-		// sc = new Scanner(System.in);
 	}
 
 	public void addPhoneInfo() {
@@ -25,14 +31,10 @@ public class Manager {
 		System.out.print("생년월일: ");
 		String birth = sc.next();
 
-		// arr[count++] = new PhoneInfo(name, phoneNo, birth);
 		list.add(new PhoneInfo(name, phoneNo, birth));
 	}
 
 	public void listPhoneInfo() {
-		// for (int i = 0; i < count; i++) {
-		// arr[i].show();
-		// }
 		list.iterator().forEachRemaining(PhoneInfo::show);
 	}
 
@@ -64,4 +66,38 @@ public class Manager {
 			break;
 		}
 	}
+
+	public void insertData() {
+		try {
+			oos = new ObjectOutputStream(new FileOutputStream(FILE_NAME));
+			oos.writeObject(list);
+			list.clear();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
+	public void getData() {
+		try {
+			ois = new ObjectInputStream(new FileInputStream(FILE_NAME));
+			list = (List) ois.readObject();
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				oos.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+
 }

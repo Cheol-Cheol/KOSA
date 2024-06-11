@@ -1,16 +1,24 @@
 package kosa.subject.stream.problem.easy;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Problem1 {
 
-    /**
-     * 주어진 문자열 리스트에서 길이가 5 이상인 문자열만을 포함하는 리스트를 반환합니다.
-     *
-     * @param strings 원본 문자열 리스트
-     * @return 길이가 5 이상인 문자열만 포함하는 리스트
-     */
-    public static List<String> filterStrings(List<String> strings) {
-        return null;
-    }
+	/**
+	 * 주어진 문자열 리스트에서 길이가 5 이상인 문자열만을 포함하는 리스트를 반환합니다.
+	 *
+	 * @param strings 원본 문자열 리스트
+	 * @return 길이가 5 이상인 문자열만 포함하는 리스트
+	 */
+	public static void main(String[] args) {
+		List<String> strings = Arrays.asList("가나다라마", "가나다", "가가가가가가", "나나나나나나나", "가나나");
+		System.out.println(filterStrings(strings));
+	}
+
+	public static List<String> filterStrings(List<String> strings) {
+		return strings.stream().filter(s -> s.length() >= 5).collect(Collectors.toList());
+	}
+	
 }
