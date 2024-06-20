@@ -81,3 +81,13 @@ group by dno
 having count(*) >= 3;
 
 
+-- 240620
+
+--kcc>course 테이블에서 과목명(cname) 마지막 글자를 제외하고 출력
+SELECT cname, SUBSTR(cname, 1, LENGTH(cname)-1) 
+FROM course;
+
+SELECT SYSDATE -1 "어제", SYSDATE "오늘", SYSDATE + 1 "내일"
+FROM dual;
+
+

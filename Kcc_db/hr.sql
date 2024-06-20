@@ -64,3 +64,15 @@ from employees
 group by department_id
 having avg(salary) < 5000;
 
+-- 240620
+SELECT 'DataBase', LOWER('Database')
+FROM dual;
+
+SELECT SUBSTR('abcdef',2. 3)
+FROM dual;
+
+SELECT SUBSTR('abcdef',3)
+FROM dual;
+
+
+
