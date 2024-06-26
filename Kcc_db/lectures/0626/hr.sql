@@ -1,0 +1,406 @@
+SET SERVEROUTPUT ON;
+
+-- 프로시저 생성
+CREATE OR REPLACE PROCEDURE LISTBYDEPTNO (
+    P_DEPTNO IN EMPLOYEES.DEPARTMENT_ID%TYPE
+) IS
+    CURSOR EMPLOYEE_CURSORS IS
+    SELECT
+        *
+    FROM
+        EMPLOYEES
+    WHERE
+        DEPARTMENT_ID = P_DEPTNO;
+
+    EMPLOYEE_RECORD EMPLOYEE_CURSORS%ROWTYPE;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('=========== 사원 리스트 ============');
+    FOR EMPLOYEE_RECORD IN EMPLOYEE_CURSORS LOOP
+        DBMS_OUTPUT.PUT_LINE(P_DEPTNO
+                             || ' '
+                             || EMPLOYEE_RECORD.EMPLOYEE_ID
+                             || ' '
+                             || EMPLOYEE_RECORD.LAST_NAME);
+    END LOOP;
+
+END;
+
+-- 프로시저 실행 
+EXECUTE LISTBYDEPTNO(30);
+
+-- 기존 JOB -> JOB2 복사, 프로시저를 이용하여 JOB_ID, JOB_TITLE, MIN_SALARY, MAX_SALARY
+CREATE TABLE JOB2
+    AS
+        SELECT
+            *
+        FROM
+            JOBS;
+
+CREATE OR REPLACE PROCEDURE INSERTJOBS (
+    P_JOB_ID     IN JOB2.JOB_ID%TYPE,
+    P_JOB_TITLE  IN JOB2.JOB_TITLE%TYPE,
+    P_MIN_SALARY IN JOB2.MIN_SALARY%TYPE,
+    P_MAX_SALARY IN JOB2.MAX_SALARY%TYPE
+) IS
+BEGIN
+    INSERT INTO JOB2 VALUES (
+        P_JOB_ID,
+        P_JOB_TITLE,
+        P_MIN_SALARY,
+        P_MAX_SALARY
+    );
+
+END;
+
+EXECUTE INSERTJOBS('A', 'IT', 100, 1000);
+
+
+-- JOBS2 테이블 JOB_ID 제약조건(PK) 추가, 프로시저를 이용하여 동일한 JOB_ID를 체크, 데이터가 중복되면 UPDATE문  실행, 아니면 INSERT문 실행
+ALTER TABLE JOB2 ADD CONSTRAINT JOB2_JOB_ID_PK PRIMARY KEY ( JOB_ID );
+
+CREATE OR REPLACE PROCEDURE IS_EQUAL_JOB_ID (
+    P_JOB_ID     IN JOB2.JOB_ID%TYPE,
+    P_JOB_TITLE  IN JOB2.JOB_TITLE%TYPE,
+    P_MIN_SALARY IN JOB2.MIN_SALARY%TYPE,
+    P_MAX_SALARY IN JOB2.MAX_SALARY%TYPE
+) IS
+    V_CNT NUMBER := 0;
+BEGIN
+    SELECT
+        COUNT(*)
+    INTO V_CNT
+    FROM
+        JOB2
+    WHERE
+        JOB_ID = P_JOB_ID;
+
+    IF V_CNT = 1 THEN
+        UPDATE JOB2
+        SET
+            JOB_TITLE = P_JOB_TITLE,
+            MIN_SALARY = P_MIN_SALARY,
+            MAX_SALARY = P_MAX_SALARY
+        WHERE
+            JOB_ID = P_JOB_ID;
+
+        DBMS_OUTPUT.PUT_LINE('UPDATE 성공');
+    ELSE
+        INSERT INTO JOB2 VALUES (
+            P_JOB_ID,
+            P_JOB_TITLE,
+            P_MIN_SALARY,
+            P_MAX_SALARY
+        );
+
+        DBMS_OUTPUT.PUT_LINE('INSERT 성공');
+    END IF;
+
+    COMMIT;
+END;
+
+EXECUTE IS_EQUAL_JOB_ID('AA', 'ITTT', 200, 212);
+
+-- 디폴트 설정
+CREATE OR REPLACE PROCEDURE IS_EQUAL_JOB_ID2 (
+    P_JOB_ID     IN JOB2.JOB_ID%TYPE,
+    P_JOB_TITLE  IN JOB2.JOB_TITLE%TYPE,
+    P_MIN_SALARY IN JOB2.MIN_SALARY%TYPE := 100,
+    P_MAX_SALARY IN JOB2.MAX_SALARY%TYPE := 1000
+) IS
+    V_CNT NUMBER := 0;
+BEGIN
+    SELECT
+        COUNT(*)
+    INTO V_CNT
+    FROM
+        JOB2
+    WHERE
+        JOB_ID = P_JOB_ID;
+
+    IF V_CNT = 1 THEN
+        UPDATE JOB2
+        SET
+            JOB_TITLE = P_JOB_TITLE,
+            MIN_SALARY = P_MIN_SALARY,
+            MAX_SALARY = P_MAX_SALARY
+        WHERE
+            JOB_ID = P_JOB_ID;
+
+        DBMS_OUTPUT.PUT_LINE('UPDATE 성공');
+    ELSE
+        INSERT INTO JOB2 VALUES (
+            P_JOB_ID,
+            P_JOB_TITLE,
+            P_MIN_SALARY,
+            P_MAX_SALARY
+        );
+
+        DBMS_OUTPUT.PUT_LINE('INSERT 성공');
+    END IF;
+
+    COMMIT;
+END;
+
+EXECUTE IS_EQUAL_JOB_ID2('AAA', 'ITTT');
+
+-- 리턴값 설정
+CREATE OR REPLACE PROCEDURE IS_EQUAL_JOB_ID3 (
+    P_JOB_ID     IN JOB2.JOB_ID%TYPE,
+    P_JOB_TITLE  IN JOB2.JOB_TITLE%TYPE,
+    P_MIN_SALARY IN JOB2.MIN_SALARY%TYPE := 100,
+    P_MAX_SALARY IN JOB2.MAX_SALARY%TYPE := 1000,
+    P_RESULT     OUT NUMBER
+) IS
+    V_CNT NUMBER := 0;
+BEGIN
+    SELECT
+        COUNT(*)
+    INTO V_CNT
+    FROM
+        JOB2
+    WHERE
+        JOB_ID = P_JOB_ID;
+
+    IF V_CNT = 1 THEN
+        UPDATE JOB2
+        SET
+            JOB_TITLE = P_JOB_TITLE,
+            MIN_SALARY = P_MIN_SALARY,
+            MAX_SALARY = P_MAX_SALARY
+        WHERE
+            JOB_ID = P_JOB_ID;
+
+        DBMS_OUTPUT.PUT_LINE('UPDATE 성공');
+    ELSE
+        P_RESULT := 1;
+        INSERT INTO JOB2 VALUES (
+            P_JOB_ID,
+            P_JOB_TITLE,
+            P_MIN_SALARY,
+            P_MAX_SALARY
+        );
+
+        DBMS_OUTPUT.PUT_LINE('INSERT 성공');
+    END IF;
+
+    COMMIT;
+END;
+
+-- 프로시저 실행
+DECLARE
+    P_RESULT NUMBER;
+BEGIN
+    IS_EQUAL_JOB_ID3('D', 'D1', 200, 20000, P_RESULT);
+    IF P_RESULT = 1 THEN
+        DBMS_OUTPUT.PUT_LINE('추가되었습니다.');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('수정되었습니다.');
+    END IF;
+
+END;
+
+-- 함수 생성
+CREATE OR REPLACE FUNCTION GETSALARY (
+    P_NO EMPLOYEES.EMPLOYEE_ID%TYPE
+) RETURN NUMBER IS
+    V_SALARY NUMBER;
+BEGIN
+    SELECT
+        SALARY
+    INTO V_SALARY
+    FROM
+        EMPLOYEES
+    WHERE
+        EMPLOYEE_ID = P_NO;
+
+    RETURN V_SALARY;
+END;
+
+SELECT
+    GETSALARY(100)
+FROM
+    DUAL;
+    
+-- 사원번호를 입력받아 이름을 반환하는 함수를 구현하자. 없으면 ‘해당 사원 없음’
+CREATE OR REPLACE FUNCTION GET_EMP_NAME (
+    P_EMPLOYEE_ID EMPLOYEES.EMPLOYEE_ID%TYPE
+) RETURN VARCHAR2 IS
+    RESULT VARCHAR2(50) := NULL;
+BEGIN
+    SELECT
+        LAST_NAME
+    INTO RESULT
+    FROM
+        EMPLOYEES
+    WHERE
+        EMPLOYEE_ID = P_EMPLOYEE_ID;
+
+    RETURN RESULT;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        RETURN '해당 사원 없음';
+END;
+
+SELECT
+    GET_EMP_NAME(10)
+FROM
+    DUAL;
+    
+-- 패키지 선언
+CREATE OR REPLACE PACKAGE MY_PACKAGE IS
+    PROCEDURE GETEMPLOYEE (
+        IN_ID      IN EMPLOYEES.EMPLOYEE_ID%TYPE,
+        OUT_ID     OUT EMPLOYEES.EMPLOYEE_ID%TYPE,
+        OUT_NAME   OUT EMPLOYEES.FIRST_NAME%TYPE,
+        OUT_SALARY OUT EMPLOYEES.SALARY%TYPE
+    );
+
+    FUNCTION GETSALARY (
+        P_NO EMPLOYEES.EMPLOYEE_ID%TYPE
+    ) RETURN NUMBER;
+
+END;
+
+-- 패키지 본문
+CREATE OR REPLACE PACKAGE BODY MY_PACKAGE IS
+
+    PROCEDURE GETEMPLOYEE (
+        IN_ID      IN EMPLOYEES.EMPLOYEE_ID%TYPE,
+        OUT_ID     OUT EMPLOYEES.EMPLOYEE_ID%TYPE,
+        OUT_NAME   OUT EMPLOYEES.FIRST_NAME%TYPE,
+        OUT_SALARY OUT EMPLOYEES.SALARY%TYPE
+    ) IS
+    BEGIN
+        SELECT
+            EMPLOYEE_ID,
+            FIRST_NAME,
+            SALARY
+        INTO
+            OUT_ID,
+            OUT_NAME,
+            OUT_SALARY
+        FROM
+            EMPLOYEES
+        WHERE
+            EMPLOYEE_ID = IN_ID;
+
+    END; -- 프로시저 END
+
+    FUNCTION GETSALARY (
+        P_NO EMPLOYEES.EMPLOYEE_ID%TYPE
+    ) RETURN NUMBER IS
+        V_SALARY NUMBER;
+    BEGIN
+        SELECT
+            SALARY
+        INTO V_SALARY
+        FROM
+            EMPLOYEES
+        WHERE
+            EMPLOYEE_ID = P_NO;
+
+        RETURN V_SALARY;
+    END; -- 함수 END
+
+END;
+
+-- 함수 실행
+SELECT
+    MY_PACKAGE.GETSALARY(100)
+FROM
+    DUAL;
+
+-- 프로시저 실행
+DECLARE
+    P_ID     NUMBER;
+    P_NAME   VARCHAR2(50);
+    P_SALARY NUMBER;
+BEGIN
+    MY_PACKAGE.GETEMPLOYEE(100, P_ID, P_NAME, P_SALARY);
+    DBMS_OUTPUT.PUT_LINE(P_ID
+                         || ' '
+                         || P_NAME
+                         || ' '
+                         || P_SALARY);
+
+END;
+
+-- 트리거
+CREATE TABLE EMP14 (
+    EMPNO NUMBER PRIMARY KEY,
+    ENAME VARCHAR2(20),
+    JOB   VARCHAR2(20)
+);
+
+CREATE OR REPLACE TRIGGER TRG_01 AFTER
+    INSERT ON EMP14
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('신입 사원이 추가되었습니다');
+END;
+
+INSERT INTO EMP14 VALUES (
+    1,
+    'CHEOL',
+    'STUDENT'
+);
+
+
+-- 행 레벨 트리거
+CREATE TABLE SAL01 (
+    SALNO NUMBER PRIMARY KEY,
+    SAL   NUMBER,
+    EMPNO NUMBER
+        REFERENCES EMP14 ( EMPNO )
+);
+
+CREATE SEQUENCE SAL01_SALNO_SEQ;
+
+CREATE OR REPLACE TRIGGER TRG_02 AFTER
+    INSERT ON EMP14
+    FOR EACH ROW
+BEGIN
+    INSERT INTO SAL01 VALUES (
+        SAL01_SALNO_SEQ.NEXTVAL,
+        4000,
+        :NEW.EMPNO
+    );
+
+END;
+
+INSERT INTO EMP14 VALUES (
+    2,
+    'CHEOL2',
+    'STUDENT2'
+);
+
+SELECT
+    *
+FROM
+    SAL01;
+
+-- 사원이 삭제되면 그 사원의 급여정보(SAL01) 테이블의 해당 로우도 함께 삭제
+CREATE OR REPLACE TRIGGER TRG_03 AFTER
+    DELETE ON EMP14
+    FOR EACH ROW
+BEGIN
+    DELETE FROM SAL01
+    WHERE
+        EMPNO = :OLD.EMPNO;
+
+END;
+
+DELETE FROM EMP14
+WHERE
+    EMPNO = 2;
+
+SELECT
+    *
+FROM
+    EMP14;
+
+SELECT
+    *
+FROM
+    SAL01;
+
+

@@ -475,3 +475,82 @@ EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('기타 에외');
 END;
+
+
+-- CURSOR
+DECLARE
+    CURSOR DEPARTMENT_CURSORS IS
+    SELECT
+        DEPARTMENT_ID,
+        DEPARTMENT_NAME,
+        LOCATION_ID
+    FROM
+        DEPARTMENTS;
+
+    DEPARTMENT_RECORD DEPARTMENT_CURSORS%ROWTYPE;
+BEGIN
+    OPEN DEPARTMENT_CURSORS;
+    LOOP
+        FETCH DEPARTMENT_CURSORS INTO
+            DEPARTMENT_RECORD.DEPARTMENT_ID,
+            DEPARTMENT_RECORD.DEPARTMENT_NAME,
+            DEPARTMENT_RECORD.LOCATION_ID;
+        EXIT WHEN DEPARTMENT_CURSORS%NOTFOUND;
+        DBMS_OUTPUT.PUT_LINE(DEPARTMENT_RECORD.DEPARTMENT_ID
+                             || ' '
+                             || DEPARTMENT_RECORD.DEPARTMENT_NAME
+                             || ' '
+                             || DEPARTMENT_RECORD.LOCATION_ID);
+
+    END LOOP;
+
+    CLOSE DEPARTMENT_CURSORS;
+END;
+
+DECLARE
+    CURSOR DEPARTMENT_CURSORS IS
+    SELECT
+        DEPARTMENT_ID,
+        DEPARTMENT_NAME,
+        LOCATION_ID
+    FROM
+        DEPARTMENTS;
+
+    DEPARTMENT_RECORD DEPARTMENT_CURSORS%ROWTYPE;
+BEGIN
+    FOR DEPARTMENT_RECORD IN DEPARTMENT_CURSORS LOOP
+        DBMS_OUTPUT.PUT_LINE(DEPARTMENT_RECORD.DEPARTMENT_ID
+                             || ' '
+                             || DEPARTMENT_RECORD.DEPARTMENT_NAME
+                             || ' '
+                             || DEPARTMENT_RECORD.LOCATION_ID);
+    END LOOP;
+END;
+
+
+-- 커서를 이용하여 사원의 정보를 출력하라. (사원번호, 사원이름(FIRST_NAME), 급여, 급여누계)
+DECLARE
+    CURSOR EMP_CURSORS IS
+    SELECT
+        EMPLOYEE_ID,
+        LAST_NAME,
+        SALARY
+    FROM
+        EMPLOYEES2;
+
+    EMP_RECORD  EMP_CURSORS%ROWTYPE;
+    V_SAL_TOTAL NUMBER := 0;
+BEGIN
+DBMS_OUTPUT.PUT_LINE('사원번호     사원이름     급여     급여누계');
+    FOR EMP_RECORD IN EMP_CURSORS LOOP
+        V_SAL_TOTAL := V_SAL_TOTAL + EMP_RECORD.SALARY;
+        DBMS_OUTPUT.PUT_LINE(EMP_RECORD.EMPLOYEE_ID
+                             || '          '
+                             || EMP_RECORD.LAST_NAME
+                             || '     '
+                             || EMP_RECORD.SALARY
+                             || '     '
+                             || V_SAL_TOTAL);
+
+    END LOOP;
+END;
