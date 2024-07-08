@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="#">
+		<!-- 		<ul> -->
+		<!-- 			<li><label for="">이름 <input type="text" /></label></li> -->
+		<!-- 			<li><label for="">아이디 <input type="text" /></label></li> -->
+		<!-- 			<li><label for=""><input type="text" /></label></li> -->
+		<!-- 			<li><label for=""><input type="text" /></label></li> -->
+		<!-- 			<li><label for=""><input type="text" /></label></li> -->
+		<!-- 			<li><label for=""><input type="text" /></label></li> -->
+		<!-- 			<li><label for=""><input type="text" /></label></li> -->
+		<!-- 			<li><label for=""><input type="text" /></label></li> -->
+		<!-- 		</ul>	 -->
+
+		<table width="450" border="1">
+			<thead>
+
+				<tr>1
+				</tr>
+				<tr>2
+				</tr>
+				<tr>3
+				</tr>
+				<tr>4
+				</tr>
+				<tr>5
+				</tr>
+				<tr>6
+				</tr>
+				<tr>7
+				</tr>
+				<tr>8
+				</tr>
+			</thead>
+			<tbody>
+				<tr width="50" align ="left"></tr>
+			</tbody>
+		</table>
+	</form>
+</body>
+</html>

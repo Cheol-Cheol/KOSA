@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h3>상대경로</h3>
+	<img src="../images/road1.jps" alt="" />
+</body>
+</html>

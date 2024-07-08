@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="#">
+		<ul>
+			<td><label for="">이름 <input type="text" /></label></li>
+			<li><label for="">아이디 <input type="text" /></label></li>
+			<li><label for="">비밀번호<input type="text" /></label></li>
+			<li><label for="">비밀번호 확인<input type="text" /></label></li>
+			<li><label for="">이메일<input type="text" /></label></li>
+			<li><label for="">연락처<input type="text" /></label></li>
+			<li><label for="">메일수신여부<input type="text" /></label></li>
+			<li><label for="">관심분야<input type="text" /></label></li>
+		</ul>
+	</form>
+</body>
+</html>
