@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style>
+ul {
+	list-style-type: none;
+}
+
+li {
+	background-color: red;
+	width: 50%;
+	margin-bottom: 10px;
+}
+</style>
+</head>
+<body style="text-align: center">
+	<header>
+		<h1>HTML Homework</h1>
+	</header>
+
+	<section>
+		<h2>HTML 마크업 작성</h2>
+		<ul>
+			<li>h2 태그를 이용하여
+				<h2>제목</h2>을 표시합니다.
+			</li>
+			<li>br 태그를 이용하여 <br />줄 바꿈을 합니다.
+			</li>
+			<li>strong 태그를 이용하여 <string>문자</string>를 강조합니다.
+			</li>
+			<li>mark 태그를 이용하여 <mark>문자</mark>를 강조합니다.
+			</li>
+		</ul>
+	</section>
+
+
+
+</body>
+</html>
