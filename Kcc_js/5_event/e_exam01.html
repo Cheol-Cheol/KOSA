@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script defer>
+      function doProcess() {
+        const resultEl = document.querySelector('#result');
+        resultEl.innerHTML = '<span>이벤트 결과</span>';
+      }
+
+      function doProcess2() {
+        alert('이벤트 결과2');
+      }
+
+      window.onload = function () {
+        const btn = document.querySelector('#btn');
+        // btn.onclick = doProcess2; // 함수를 넣을 때는 () 쓰지 말 것!
+
+        btn.addEventListener('click', doProcess, false);
+        btn.addEventListener('click', doProcess2, false);
+      };
+    </script>
+  </head>
+  <body>
+    <div id="result"></div>
+    <br />
+    <input type="button" value="버튼1" onclick="doProcess()" />&nbsp;&nbsp;
+    <input type="button" value="버튼2" id="btn" />
+  </body>
+</html>

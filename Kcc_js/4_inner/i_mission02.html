@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      function checkId() {
+        const str =
+          'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz1234567890';
+
+        const idValue = document.querySelector('.input-id').value;
+        for (const ch of idValue) {
+          // if (str.indexOf(ch) === -1) {
+          if (!str.includes(ch)) {
+            alert('아이디 형식이 올바르지 않습니다.');
+            document.querySelector('.input-id').value = '';
+            return;
+          }
+        }
+        alert('[아이디] 유효성 검사 통과!');
+      }
+
+      const checkEmail = () => {
+        const emailValue = document.querySelector('.input-email').value;
+        if (!emailValue.includes('@')) {
+          alert('이메일 형식이 올바르지 않습니다.');
+          document.querySelector('.input-email').value = '';
+          return;
+        } else {
+          alert('[이메일] 유효성 검사 통과!');
+        }
+      };
+
+      function check() {
+        checkId();
+        checkEmail();
+      }
+    </script>
+  </head>
+  <body>
+    <form name="fmt">
+      아이디: <input type="text" name="id" class="input-id" /><br />
+      이메일: <input type="text" name="email" class="input-email" /><br />
+      <input type="button" value="전송" onclick="check()" />
+    </form>
+  </body>
+</html>
