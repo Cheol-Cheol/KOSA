@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Document</title>
+    <meta charset="UTF-8" />
+    <script src="./app.js"></script>
+  </head>
+  <body>
+    <label>출발역</label>
+    <select id="start"></select>
+    <label>도착역</label>
+    <select id="end"></select>
+    <label
+      ><input type="radio" name="group" value="ADULT" checked /> 성인일반</label
+    >
+    <label><input type="radio" name="group" value="YOUNG" /> 청소년</label>
+    <label><input type="radio" name="group" value="CHILD" /> 어린이</label>
+    <div>
+      <button>요금계산</button>
+    </div>
+    <div
+      id="output"
+      style="
+        width: 100%;
+        height: 150px;
+        overflow-y: auto;
+        border: 2px solid #222;
+      "
+    ></div>
+  </body>
+</html>
