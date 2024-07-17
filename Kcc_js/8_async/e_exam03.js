@@ -56,5 +56,4 @@ async function lend() {
     console.log('대금 종료');
   }
 }
-
 lend();
