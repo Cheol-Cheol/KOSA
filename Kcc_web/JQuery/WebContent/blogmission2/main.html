@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+<script type="text/javascript" src="blog.js"></script>
+<style type="text/css">
+.blog {
+	border: 1px solid;
+}
+
+.title {
+	float: left;
+}
+
+#list-item {
+	width: 30%;
+	padding: 10px 0px 20px 20px;
+	border: 1px solid gray;
+	border-radius: 8px;
+	display: flex;
+	flex-direction: column;
+	margin: 20px 0px;
+}
+
+.writer {
+	font-weight: bold;
+}
+
+.delete-btn {
+	width: 10%;
+	border: 1px solid gray;
+	padding: 10px;
+	border-radius: 5px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.form {
+	border: 1px solid gray;
+	width: 30%;
+	margin: 40px 0px;
+	padding: 10px 0px 20px 20px;
+	border-radius: 8px;
+	padding: 10px 0px 20px 20px;
+	box-sizing: border-box;
+}
+
+</style>
+</head>
+<body>
+	<div id="list"></div>
+
+	<form action="POST" class="form">
+		<input type="text" name="title" placeholder="제목을 입력해주세요." /> <br>
+		<br> <input type="text" name="writer" placeholder="작성자명을 입력해주세요." /><br>
+		<br> <input type="text" name="contents" placeholder="내용을 입력해주세요." /><br>
+		<br> <input type="submit" value="입력" />
+	</form>
+
+</body>
+</html>
