@@ -17,6 +17,10 @@
 	<jsp:include page="/include/module/header.jsp"></jsp:include>
 	<hr />
 
+	<!--  logo-->
+	<jsp:include page="/include/module/logo.jsp"></jsp:include>
+	<hr />
+
 	<!--  menu  -->
 	<jsp:include page="/include/menu.jsp"></jsp:include>
 	<hr />
