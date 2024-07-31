@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>회원가입 폼</title>
+<style>
+fieldset {
+	margin-top: 15px;
+}
+
+.form {
+	width: 250px;
+	margin: 0 auto;
+	margin-top: 300px;
+}
+
+input {
+	margin: 15px 0px;
+}
+
+button {
+	width: 100%;
+	margin-top: 15px;
+	padding: 10px 15px;
+	background-color: white;
+	border: 1px solid black;
+	border-radius: 7px;
+	margin-top: 15px;
+}
+</style>
+</head>
+<body>
+	<form action="/SignUpServlet" method="post" class="form">
+		<fieldset>
+			<legend>회원가입 정보 입력</legend>
+			<div>
+				<input type="email" placeholder="이메일을 입력해주세요." name="email">
+			</div>
+			<div>
+				<input type="password" placeholder="비밀번호를 입력해주세요." name="password">
+			</div>
+			<div>
+				<input type="text" placeholder="이름을 입력해주세요." name="name">
+			</div>
+		</fieldset>
+
+
+		<fieldset>
+			<legend>취미 선택</legend>
+			<input type="checkbox" name="hobby" value="running" id="running">
+			<label for="running">러닝</label> <input type="checkbox"
+				value="cooking" name="hobby" id="cooking"> <label
+				for="cooking">요리</label>
+		</fieldset>
+
+		<button type="submit">가입하기</button>
+	</form>
+</body>
+</html>
