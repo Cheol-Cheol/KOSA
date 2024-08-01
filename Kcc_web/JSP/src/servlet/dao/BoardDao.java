@@ -36,6 +36,43 @@ public class BoardDao {
 		return null;
 	}
 
+	// 글 1개 보기
+	public Board detailBoard(int seq) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Board board = new Board();
+
+		String sql = "select * from board where seq = ?";
+
+		try {
+			conn = getDBCPConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			rs = pstmt.executeQuery();
+
+			if (rs.next()) {
+				board.setSeq(rs.getInt("seq"));
+				board.setTitle(rs.getString("title"));
+				board.setWriter(rs.getString("writer"));
+				board.setContents(rs.getString("contents"));
+				board.setRegdate(rs.getString("regdate"));
+				board.setHitcount(rs.getInt("hitcount"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (Exception e2) {
+				}
+			}
+		}
+
+		return board;
+	}
+
 	// 글 목록 보기
 	public List<Board> listBoard() {
 		Connection conn;

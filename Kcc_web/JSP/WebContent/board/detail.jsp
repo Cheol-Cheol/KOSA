@@ -1,3 +1,4 @@
+<%@page import="servlet.dao.BoardDao2"%>
 <%@page import="servlet.model.Board"%>
 <%@page import="java.util.List"%>
 <%@page import="servlet.dao.BoardDao"%>
@@ -5,17 +6,9 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	String seq = request.getParameter("seq");
-	BoardDao dao = BoardDao.getInstance();
-	List<Board> list = dao.listBoard();
-
-	Board output = null;
-	for (int i = 0; i < list.size(); i++) {
-		if (list.get(i).getSeq() == Integer.parseInt(seq)) {
-			output = list.get(i);
-			break;
-		}
-	}
+	int seq = Integer.parseInt(request.getParameter("seq"));
+	BoardDao2 dao = BoardDao2.getInstance();
+	Board board = dao.detailBoard(seq);
 %>
 
 <!DOCTYPE html>
@@ -25,42 +18,15 @@
 <title>게시판 목록</title>
 </head>
 <body>
-	<h1>게시글 내용</h1>
-	<%
-		if (output != null) {
-	%>
-	<table border="1">
-		<tr>
-			<th>번호</th>
-			<td><%=output.getSeq()%></td>
-		</tr>
-		<tr>
-			<th>제목</th>
-			<td><%=output.getTitle()%></td>
-		</tr>
-		<tr>
-			<th>작성자</th>
-			<td><%=output.getWriter()%></td>
-		</tr>
-		<tr>
-			<th>내용</th>
-			<td><%=output.getContents()%></td>
-		</tr>
-		<tr>
-			<th>작성일</th>
-			<td><%=output.getRegdate()%></td>
-		</tr>
-		<tr>
-			<th>조회수</th>
-			<td><%=output.getHitcount()%></td>
-		</tr>
-	</table>
-	<%
-		} else {
-	%>
-	<p>해당하는 글을 찾을 수 없습니다.</p>
-	<%
-		}
-	%>
+	<h2>글 세부 보기</h2>
+	<ul>
+		<li><%=board.getSeq()%></li>
+		<li><%=board.getTitle()%></li>
+		<li><%=board.getWriter()%></li>
+		<li><%=board.getContents()%></li>
+	</ul>
+	<br />
+
+	<a href="update_form.jsp?seq=<%=board.getSeq()%>">수정하기</a>
 </body>
 </html>
