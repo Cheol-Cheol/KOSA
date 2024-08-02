@@ -2,14 +2,15 @@ package servlet.dao;
 
 import java.io.InputStream;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
+import mapper.BlogMapper;
 import mapper.BoardMapper;
+import servlet.model.Blog;
 import servlet.model.Board;
 import servlet.model.Search;
 
@@ -33,6 +34,22 @@ public class BoardDao2 {
 		}
 
 		return new SqlSessionFactoryBuilder().build(in);
+	}
+
+	public Blog selectBlog(int id) {
+		SqlSession sqlSession = getSqlSessionFactory().openSession();
+		Blog blog = null;
+		try {
+			blog = sqlSession.getMapper(BlogMapper.class).selectBlog(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (sqlSession != null) {
+				sqlSession.close();
+			}
+		}
+
+		return blog;
 	}
 
 	public List<Board> listBoard(Search search) {

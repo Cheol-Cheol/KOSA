@@ -1,3 +1,4 @@
+<%@page import="servlet.model.Blog"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="java.util.Map"%>
 <%@page import="servlet.model.Search"%>
@@ -7,6 +8,8 @@
 <%@page import="servlet.dao.BoardDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <%
 	request.setCharacterEncoding("utf-8");
@@ -21,6 +24,11 @@
 	BoardDao2 dao = BoardDao2.getInstance();
 	List<Board> list = dao.listBoard(search);
 	//System.out.println(list);
+
+	Blog blog = dao.selectBlog(100);
+	System.out.println(blog);
+
+	request.setAttribute("list", list);
 %>
 <!DOCTYPE html>
 <html>
@@ -39,20 +47,21 @@
 			<th>작성일</th>
 			<th>조회수</th>
 		</tr>
-		<%
-			for (int i = 0; i < list.size(); i++) {
-				Board board = list.get(i);
-		%>
-		<tr>
-			<td><%=board.getSeq()%></td>
-			<td><a href="detail.jsp?seq=<%=board.getSeq()%>"><%=board.getTitle()%></a></td>
-			<td><%=board.getWriter()%></td>
-			<td><%=board.getRegdate()%></td>
-			<td><%=board.getHitcount()%></td>
-		</tr>
-		<%
-			}
-		%>
+
+		<c:forEach var="el" items="${list}">
+
+			<tr>
+				<td>${el.getSeq()}</td>
+				<td><a href="detail.jsp?seq=${el.getSeq()}">${el.getTitle()}</a></td>
+				<td>${el.getWriter()}</td>
+				<td><fmt:parseDate var="dt" value="${el.getRegdate()}"
+						pattern="yyyy-MM-dd" /> <fmt:formatDate value="${dt}"
+						pattern="yyyy/MM/dd" /></td>
+				<td>${el.getHitcount()}</td>
+			</tr>
+
+		</c:forEach>
+
 	</table>
 	<br>
 	<br>
