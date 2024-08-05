@@ -6,9 +6,15 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="servlet.model.Board" alias="Board" />
-		<typeAlias type="servlet.model.Search" alias="Search"/>
-		<typeAlias type="servlet.model.Blog" alias="Blog"/>
-		<typeAlias type="servlet.model.Author" alias="Author"/>
+		<typeAlias type="servlet.model.Search" alias="Search" />
+		<typeAlias type="servlet.model.Blog" alias="Blog" />
+		<typeAlias type="servlet.model.Author" alias="Author" />
+		<typeAlias type="servlet.subject.s01.MemberVO"
+			alias="MemberVO" />
+		<typeAlias type="servlet.subject.s01.ProductVO"
+			alias="ProductVO" />
+				<typeAlias type="servlet.subject.s01.CartVO"
+			alias="CartVO" />
 	</typeAliases>
 
 	<environments default="development">
@@ -24,6 +30,9 @@
 	<mappers>
 		<mapper resource="mapper/Board.xml" />
 		<mapper resource="mapper/Blog.xml" />
+		<mapper resource="mapper/subject/s01/Auth.xml" />
+		<mapper resource="mapper/subject/s01/Product.xml" />
+		<mapper resource="mapper/subject/s01/Cart.xml" />
 	</mappers>
 
 </configuration>

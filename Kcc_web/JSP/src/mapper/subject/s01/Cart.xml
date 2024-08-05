@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="mapper.subject.s01.CartMapper">
+	<cache />
+
+	<insert id="addToCart" parameterType="CartVO">
+		insert into
+		s_cart(seq,
+		member_id, product_id) values(s_cart_seq.nextval, #{member_id},
+		#{product_id})
+	</insert>
+
+	<select id="getCartById" parameterType="int" resultType="CartVO">
+		select * from s_cart where member_id = #{seq}
+	</select>
+
+</mapper>

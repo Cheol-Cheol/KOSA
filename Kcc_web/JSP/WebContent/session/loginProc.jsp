@@ -14,7 +14,7 @@
 
 	if (id.equals(m_id) && pass.equals(m_pass)) {
 		// session 관련 내용
-		session.setAttribute("name", name);
+		session.setAttribute("name", m_name);
 	} else {
 		response.sendRedirect("loginForm.jsp");
 	}

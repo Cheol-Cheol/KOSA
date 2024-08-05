@@ -3,10 +3,10 @@
 	pageEncoding="UTF-8"%>
 
 <%
-	String name = (String) session.getAttribute("name");
-	if (name == null) {
-		response.sendRedirect("loginForm.jsp");
-	}
+// 	String name = (String) session.getAttribute("name");
+// 	if (name == null) {
+// 		response.sendRedirect("loginForm.jsp");
+// 	}
 
 	session.invalidate();
 %>

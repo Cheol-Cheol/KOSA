@@ -26,12 +26,17 @@ button {
 	border: 1px solid black;
 	border-radius: 7px;
 	margin-top: 15px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #eee
 }
 </style>
 </head>
 <body>
-<!-- 	<form action="/SignUpServlet" method="post" class="form"> -->
-	<form action="signup-action.jsp" method="post" class="form">
+	<!-- 	<form action="/SignUpServlet" method="post" class="form"> -->
+	<form action="/signUp" method="post" class="form">
 		<fieldset>
 			<legend>회원가입 정보 입력</legend>
 			<div>
@@ -45,14 +50,6 @@ button {
 			</div>
 		</fieldset>
 
-
-		<fieldset>
-			<legend>취미 선택</legend>
-			<input type="checkbox" name="hobby" value="running" id="running">
-			<label for="running">러닝</label> <input type="checkbox"
-				value="cooking" name="hobby" id="cooking"> <label
-				for="cooking">요리</label>
-		</fieldset>
 
 		<button type="submit">가입하기</button>
 	</form>

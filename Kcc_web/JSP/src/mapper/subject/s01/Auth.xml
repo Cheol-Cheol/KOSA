@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+
+<mapper namespace="mapper.subject.s01.AuthMapper">
+	<cache />
+
+	<insert id="signUp" parameterType="MemberVO">
+		insert into s_member(seq,
+		email,
+		password, name)
+		values(s_member_seq.nextval, #{email},
+		#{password},
+		#{name})
+	</insert>
+
+	<select id="signIn" parameterType="MemberVO"
+		resultType="MemberVO">
+		select seq, email, password, name from s_member where
+		email=#{email} and password=#{password}
+	</select>
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
