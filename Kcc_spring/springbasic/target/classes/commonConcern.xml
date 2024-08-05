@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
+
+	<bean id="logAspect" class="kosa.di.LoggingAspect" />
+
+	<aop:config>
+		<!-- 접근제한자/리턴상관X/패키지/Service로 끝나는 클래스/Service로 끝나는 메서드/메서드 파라미터 무관 -->
+		<aop:pointcut
+			expression="execution(public * kosa.di.*Service.*Service(..))"
+			id="servicePointCut" />
+			
+		<aop:aspect id="loggingAspect" ref="logAspect">
+			<aop:around method="logging"
+				pointcut-ref="servicePointCut" />
+		</aop:aspect>
+
+	</aop:config>
+
+</beans>

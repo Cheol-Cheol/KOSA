@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 public class WriteService implements Service {
 
 	@Autowired
-//	@Qualifier("mySQLDao")
+	@Qualifier("mySQLDao")
 	private Dao dao;
 
 	public WriteService() {
